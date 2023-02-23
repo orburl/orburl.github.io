@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="kr">
+    <head>
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta charset="UTF-8" />
+        <title>오브 주소안내 페이지</title>
+        <style>
+            body {
+                font-weight: bold;
+                background: #000;
+            }
+            li {
+                list-style: none;
+            }
+            a {
+                text-decoration: none;
+            }
+
+            .background {
+                background: url(https://i.imgur.com/3vRjLoE.jpg) no-repeat center;
+                position: fixed;
+                top: 0;
+                left: 0;
+                bottom: 0;
+                right: 0;
+                background-size: 100% 100%;
+            }
+
+            figure {
+                position: relative;
+                overflow: hidden;
+                cursor: pointer;
+
+                -webkit-transition: transform 700ms ease-in-out;
+                -moz-transition: transform 700ms ease-in-out;
+                -ms-transition: transform 700ms ease-in-out;
+                -o-transition: transform 700ms ease-in-out;
+                transition: transform 700ms ease-in-out;
+
+                transform: scale(0);
+            }
+            figure.active {
+                -webkit-animation: extend 0.75s;
+                animation: extend 0.75s;
+                animation-fill-mode: forwards;
+            }
+            figure::before {
+                position: absolute;
+                top: 0;
+                left: -75%;
+                z-index: 2;
+                display: block;
+                content: "";
+                width: 50%;
+                height: 100%;
+                background: -webkit-linear-gradient(left, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%);
+                background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.3) 100%);
+                -webkit-transform: skewX(-25deg);
+                transform: skewX(-25deg);
+            }
+            figure:hover {
+            }
+
+            figure.animated::before {
+                -webkit-animation: shine 1.75s;
+                animation: shine 1.75s;
+            }
+            @-webkit-keyframes shine {
+                100% {
+                    left: 125%;
+                }
+            }
+            @keyframes shine {
+                100% {
+                    left: 125%;
+                }
+            }
+
+            @-webkit-keyframes extend {
+                100% {
+                    transform: scale(1);
+                }
+            }
+            @keyframes extend {
+                100% {
+                    transform: scale(1);
+                }
+            }
+
+            ul {
+                width: 100%;
+                padding: 0;
+                margin: 0;
+                margin-bottom: 40px;
+            }
+            ul li {
+                width: 100%;
+                text-align: center;
+                font-size: 15px;
+                height: 75px;
+                line-height: 75px;
+                background-color: rgba(0, 0, 0, 0.8);
+                margin: 20px 0px;
+                border-radius: 0;
+
+                -webkit-transition: background 700ms ease-in-out;
+                -moz-transition: background 700ms ease-in-out;
+                -ms-transition: background 700ms ease-in-out;
+                -o-transition: background 700ms ease-in-out;
+                transition: background 700ms ease-in-out;
+                box-sizing: border-box;
+            }
+            ul li:hover {
+                border: 4px solid yellow;
+            }
+
+            ul li a {
+                width: 100%;
+                text-align: center;
+                font-size: 55px;
+                height: 75px;
+                line-height: 75px;
+                color: #f1f1f1;
+                font-family: arial;
+                display: block;
+            }
+
+            .info-box {
+                background: rgb(0, 0, 0);
+                text-align: center;
+                font-size: 20px;
+                padding: 10px;
+                margin-top: 30px;
+                margin-bottom: 30px;
+                color: #fff;
+                font-family: arial;
+                border: 2px solid #9c9c9c;
+            }
+
+            .info-box span {
+                display: block;
+            }
+
+            .dfndfn4 {
+                width: 800px;
+                margin: 0 auto;
+                position: relative;
+            }
+            .border-box {
+                position: fixed;
+                left: 8px;
+                right: 8px;
+                top: 8px;
+                bottom: 8px;
+            }
+            
+            .logoasf {
+                width: 500px;
+                text-align: center;
+                margin: 0 auto;
+                padding-top: 30px;
+            }
+            @media only screen and (max-width: 800px) {
+                .dfndfn4, .logoasf {
+                    width: calc(100% - 16px);
+                }
+
+                ul li a {
+                    font-size: 35px;
+                }
+                .info-box {
+                    border: 2px solid #000;
+                }
+            }
+        </style>
+        <script>
+            var animate_timer = function () {
+                var element = document.getElementById("logo");
+                element.classList.remove("animated");
+
+                setTimeout(function () {
+                    element.classList.add("animated");
+                    setTimeout(animate_timer, 4000);
+                }, 500);
+            };
+
+            var onLoadCallback = function () {
+                setTimeout(function () {
+                    var element = document.getElementById("logo");
+                    element.classList.add("active");
+                }, 1500);
+
+                setTimeout(animate_timer);
+            };
+        </script>
+    </head>
+    <body style="margin: 0px; padding: 0px;" onload="onLoadCallback();">
+        <div class="background"></div>
+        <div class="border-box"></div>
+        <div style="width: 100%; float: left; margin: 0px; padding: 0px;">
+            <div class="logoasf">
+                <figure id="logo" class="active animated">
+                    <img src="https://i.imgur.com/JSJDqM1.png" title="오브 주소" style="width: 100%;"/>
+                </figure>
+            </div>
+            <div class="dfndfn4">
+                <div class="info-box">
+                    <span>안녕하세요!! <strong style="color: #a88fff;">ORB</strong> 리뉴얼 새주소입니다.</span>
+                    <span>안녕하세요 회원님들과 함께하는 BET ZONE  입니다</span>
+			        <span>반드시 캐시 삭제를 해주시고 새로고침을 하셔야 새 주소가 나타납니다</span>
+                </div>
+                <ul>
+                    <li><a href="http://xn--tl3bu2g7wgkla.com" target="_blank">벳존접속.com</a></li>
+                    <li><a href="http://xn--tl3bs2gca587deoam0a.com" target="_blank">벳존접속주소.com</a></li> 
+                </ul>
+		    <div style="color:#fff;background:#421d93;padding:10px;margin:10px">
+                <div>기본 오브 모든 주소는 기존 외주개발실과 해킹팀이 조인을 하여 해킹범들이 운영중인 상태입니다</div>
+                <div>언제 사고가 발생될지 알 수 없으며 수년간 운영을 해온 저희 운영팀을 믿고 위 주소로 이용을 해주시길 바랍니다</div>
+                <div style="font-weight: bold; margin-top: 5px; font-size: 18px">비밀번호 오류시 문의 텔레그램 @bc0505 지수 ← (유사아이디주의) </div>
+            </div>
+        </div>
+    </body>
+</html>
+
